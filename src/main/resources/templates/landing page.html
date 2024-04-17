@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Madura Articles API</title>
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        a{
+            text-decoration: none;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        .bgimg {
+            background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 25px;
+        }
+
+        .topleft {
+            position: absolute;
+            top: 0;
+            left: 16px;
+        }
+
+        .topRight {
+            position: absolute;
+            top: 0;
+            right: 16px;
+        }
+
+        .bottomleft {
+            position: absolute;
+            bottom: 0;
+            left: 16px;
+        }
+
+        .middle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        hr {
+            margin: auto;
+            width: 40%;
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimg">
+        <div class="topleft">
+            <p><a th:href="${id + '/persons/help'}">Get all persons</a></p>
+            <p><a th:href="${id + '/persons/add/help'}">Add person</a></p>
+            <p><a th:href="${id + '/persons/delete/help'}">Delete person</a></p>
+            <br/>
+            <p><a th:href="${id + '/articles/help'}">Get all articles</a></p>
+            <p><a th:href="${id + '/articles/add/help'}">Add article</a></p>
+
+        </div>
+        <div class="middle">
+            <h1>Madura Articles API</h1>
+        </div>
+        <div class="bottomleft">
+            <p>by Dimas Tri Kurniawan</p>
+        </div>
+        <div class="topRight">
+            <p id="message">Processing weather...</p>
+
+            <script>
+                $(document).ready(function(){
+                    setInterval(function() {
+                        updateText();
+                    }, 5000); // Update every 5 seconds
+
+                        function updateText() {
+                            $.ajax({
+                                url: "1" + "/updateMessage",
+                                success: function(result){
+                                    $("#message").text(result); // Update the text
+                                }
+                            });
+                        }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html>
