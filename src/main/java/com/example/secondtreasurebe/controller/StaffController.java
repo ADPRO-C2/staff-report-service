@@ -14,15 +14,42 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("staff/")
 public class StaffController {
     @Autowired
     private TopUpService topUpService;
 
-    @GetMapping("")
-    public String getAllTopUps(Model model) {
-        List<TopUp> topUps = topUpService.getAll();
-        model.addAttribute("topUps", topUps);
-        return "getAllTopUps";
+//    @GetMapping("")
+//    public String loginPage(Model model) {
+//        LoginDTO loginDTO = new LoginDTO();
+//        model.addAttribute("loginDTO", loginDTO);
+//        return "login page";
+//    }
+//
+//    @PostMapping("")
+//    public String authenticationProcessor(@ModelAttribute LoginDTO loginDTO, Model model){
+//        if (personService.existsByLoginDTO(loginDTO)){
+//            int id = personService.getIdByLoginDTO(loginDTO);
+//            return String.format("redirect:%d", id);
+//        }
+//        return "redirect:";
+//    }
+
+    @GetMapping("topup")
+    @ResponseBody
+    public ResponseEntity<Object> getAllTOpUps() {
+        return topUpService.getAllUnspecifiedTopUps();
+    }
+
+    @PostMapping("topup/accept/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> acceptTopUp(@PathVariable("id") int id) {
+        return topUpService.accept(id);
+    }
+
+    @PostMapping("topup/reject/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> rejectTopUp(@PathVariable("id") int id) {
+        return topUpService.reject(id);
     }
 }
