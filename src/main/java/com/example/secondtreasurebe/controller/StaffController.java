@@ -1,6 +1,7 @@
 package com.example.secondtreasurebe.controller;
 
 import com.example.secondtreasurebe.model.TopUp;
+import com.example.secondtreasurebe.service.ReportedListingService;
 import com.example.secondtreasurebe.service.TopUpService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 public class StaffController {
     @Autowired
     private TopUpService topUpService;
+    @Autowired
+    private ReportedListingService reportedListingService;
 
 //    @GetMapping("")
 //    public String loginPage(Model model) {
@@ -37,7 +40,7 @@ public class StaffController {
 
     @GetMapping("topup")
     @ResponseBody
-    public ResponseEntity<Object> getAllTOpUps() {
+    public ResponseEntity<Object> getAllTopUps() {
         return topUpService.getAllUnspecifiedTopUps();
     }
 
@@ -51,5 +54,17 @@ public class StaffController {
     @ResponseBody
     public ResponseEntity<Object> rejectTopUp(@PathVariable("id") int id) {
         return topUpService.reject(id);
+    }
+
+
+    @GetMapping("reported-listing")
+    @ResponseBody
+    public ResponseEntity<Object> getAllReportedListings() {
+        return reportedListingService.getAllReportedListing();
+    }
+    @PostMapping("reported-listing/remove/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> removeReportedListing(@PathVariable("id") int id) {
+        return reportedListingService.remove(id);
     }
 }
