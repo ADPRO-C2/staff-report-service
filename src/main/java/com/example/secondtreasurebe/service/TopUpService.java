@@ -1,43 +1,36 @@
 package com.example.secondtreasurebe.service;
 
-import com.example.secondtreasurebe.model.TopUp;
-import com.example.secondtreasurebe.repository.AcceptedTopUpRepository;
-import com.example.secondtreasurebe.repository.RejectedTopUpRepository;
-import com.example.secondtreasurebe.repository.UnspecifiedTopUpRepository;
+import com.example.secondtreasurebe.model.TopUpTransaction;
+import com.example.secondtreasurebe.repository.UnverifiedTopUpTransactionRepository;
+import com.example.secondtreasurebe.repository.TopUpTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TopUpService {
     @Autowired
-    private UnspecifiedTopUpRepository unspecifiedTopUpRepository;
+    private TopUpTransactionRepository topUpTransactionRepository;
     @Autowired
-    private AcceptedTopUpRepository acceptedTopUpRepository;
-    @Autowired
-    private RejectedTopUpRepository rejectedTopUpRepository;
+    private UnverifiedTopUpTransactionRepository unverifiedTopUpTransactionRepository;
 
     public ResponseEntity<Object> getAllUnspecifiedTopUps() {
-        return new ResponseEntity<>(unspecifiedTopUpRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(topUpTransactionRepository.findAll(), HttpStatus.OK);
     }
 
     public ResponseEntity<Object> getAllAcceptedTopUps() {
-        return new ResponseEntity<>(acceptedTopUpRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(unverifiedTopUpTransactionRepository.findAll(), HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> getAllrejectedTopUps() {
-        return new ResponseEntity<>(rejectedTopUpRepository.findAll(), HttpStatus.OK);
-    }
-
-    public ResponseEntity<Object> accept(int id) {
-        if (unspecifiedTopUpRepository.existsById(id)){
-            TopUp topUp = unspecifiedTopUpRepository.findById(id).get();
-            unspecifiedTopUpRepository.deleteById(topUp.getId());
-            acceptedTopUpRepository.save(topUp);
+    public ResponseEntity<Object> accept(String string_id) {
+        UUID id = UUID.fromString(string_id);
+        if (topUpTransactionRepository.existsById(id)){
+            TopUpTransaction topUpTransaction = topUpTransactionRepository.findById(id).get();
+            topUpTransactionRepository.deleteById(topUpTransaction.getId());
+            unverifiedTopUpTransactionRepository.save(topUpTransaction);
             return new ResponseEntity<>("TopUp has been accepted", HttpStatus.OK);
         }
         else{
@@ -45,11 +38,11 @@ public class TopUpService {
         }
     }
 
-    public ResponseEntity<Object> reject(int id) {
-        if (unspecifiedTopUpRepository.existsById(id)){
-            TopUp topUp = unspecifiedTopUpRepository.findById(id).get();
-            unspecifiedTopUpRepository.deleteById(topUp.getId());
-            rejectedTopUpRepository.save(topUp);
+    public ResponseEntity<Object> reject(String string_id) {
+        UUID id = UUID.fromString(string_id);
+        if (topUpTransactionRepository.existsById(id)){
+            TopUpTransaction topUpTransaction = topUpTransactionRepository.findById(id).get();
+            topUpTransactionRepository.deleteById(topUpTransaction.getId());
             return new ResponseEntity<>("TopUp has been rejected", HttpStatus.OK);
         }
         else{

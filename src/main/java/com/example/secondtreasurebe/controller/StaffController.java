@@ -1,18 +1,11 @@
 package com.example.secondtreasurebe.controller;
 
-import com.example.secondtreasurebe.model.TopUp;
 import com.example.secondtreasurebe.service.ReportedListingService;
 import com.example.secondtreasurebe.service.TopUpService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("staff/")
@@ -38,21 +31,21 @@ public class StaffController {
 //        return "redirect:";
 //    }
 
-    @GetMapping("topup")
+    @GetMapping("top-up-transaction")
     @ResponseBody
     public ResponseEntity<Object> getAllTopUps() {
         return topUpService.getAllUnspecifiedTopUps();
     }
 
-    @PostMapping("topup/accept/{id}")
+    @PostMapping("top-up-transaction/accept/{id}")
     @ResponseBody
-    public ResponseEntity<Object> acceptTopUp(@PathVariable("id") int id) {
+    public ResponseEntity<Object> acceptTopUp(@PathVariable("id") String id) {
         return topUpService.accept(id);
     }
 
-    @PostMapping("topup/reject/{id}")
+    @PostMapping("top-up-transaction/reject/{id}")
     @ResponseBody
-    public ResponseEntity<Object> rejectTopUp(@PathVariable("id") int id) {
+    public ResponseEntity<Object> rejectTopUp(@PathVariable("id") String id) {
         return topUpService.reject(id);
     }
 
@@ -62,9 +55,16 @@ public class StaffController {
     public ResponseEntity<Object> getAllReportedListings() {
         return reportedListingService.getAllReportedListing();
     }
-    @PostMapping("reported-listing/remove/{id}")
+
+    @PostMapping("reported-listing/add/{id}")
     @ResponseBody
-    public ResponseEntity<Object> removeReportedListing(@PathVariable("id") int id) {
+    public ResponseEntity<Object> addReportedListing(@PathVariable("id") String id) {
+        return reportedListingService.remove(id);
+    }
+
+    @DeleteMapping("reported-listing/remove/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> removeReportedListing(@PathVariable("id") String id) {
         return reportedListingService.remove(id);
     }
 }

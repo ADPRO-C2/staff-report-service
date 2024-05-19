@@ -7,6 +7,6 @@ import com.example.secondtreasurebe.model.Listing;
 import java.util.List;
 
 @Repository
-public interface ReportedListingRepository extends JpaRepository<Listing, String> {
+public interface ListingRepository extends JpaRepository<Listing, String> {
     List<Listing> findByUserId(int listingId);
 }
