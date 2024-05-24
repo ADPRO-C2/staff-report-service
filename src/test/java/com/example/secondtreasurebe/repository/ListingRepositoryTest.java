@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -23,7 +25,7 @@ public class ListingRepositoryTest {
         listing.setUserId(123456789);
         listing.setName("Dimas");
         listing.setDescription("sebuah deskripsi");
-        listing.setPrice(123456789);
+        listing.setPrice(new BigDecimal("123456789"));
         listing.setStock(123456789);
         listing.setPhotoUrl("https://thisisphotourl.com");
         listing.setRateCondition(0);

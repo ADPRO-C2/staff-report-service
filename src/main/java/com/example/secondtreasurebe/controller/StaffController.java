@@ -34,7 +34,7 @@ public class StaffController {
     @GetMapping("top-up-transaction")
     @ResponseBody
     public ResponseEntity<Object> getAllTopUps() {
-        return topUpService.getAllUnspecifiedTopUps();
+        return topUpService.getAllTopUps();
     }
 
     @PostMapping("top-up-transaction/accept/{id}")
@@ -59,12 +59,18 @@ public class StaffController {
     @PostMapping("reported-listing/add/{id}")
     @ResponseBody
     public ResponseEntity<Object> addReportedListing(@PathVariable("id") String id) {
-        return reportedListingService.remove(id);
+        return reportedListingService.addReportedListing(id);
+    }
+
+    @DeleteMapping("reported-listing/ignore/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> ignoreReportedListing(@PathVariable("id") String id) {
+        return reportedListingService.ignoreReportedListing(id);
     }
 
     @DeleteMapping("reported-listing/remove/{id}")
     @ResponseBody
-    public ResponseEntity<Object> removeReportedListing(@PathVariable("id") String id) {
-        return reportedListingService.remove(id);
+    public ResponseEntity<Object> removeListing(@PathVariable("id") String id) {
+        return reportedListingService.removeListing(id);
     }
 }
