@@ -2,6 +2,7 @@ package com.example.secondtreasurebe.service;
 
 import com.example.secondtreasurebe.model.Listing;
 import com.example.secondtreasurebe.repository.ListingRepository;
+import com.example.secondtreasurebe.repository.ReportedListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

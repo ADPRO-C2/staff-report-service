@@ -40,7 +40,7 @@ public class StaffController {
     @PostMapping("top-up-transaction/accept/{id}")
     @ResponseBody
     public ResponseEntity<Object> acceptTopUp(@PathVariable("id") String id) {
-        return topUpService.accept(id);
+        return topUpService.approve(id);
     }
 
     @PostMapping("top-up-transaction/reject/{id}")
