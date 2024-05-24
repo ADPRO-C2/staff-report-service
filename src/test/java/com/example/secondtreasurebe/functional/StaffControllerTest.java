@@ -29,9 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class StaffControllerTest {
     @Autowired
     private MockMvc mockMvc;
-    @InjectMocks
+    @Autowired
     private TopUpTransactionRepository topUpTransactionRepository;
 
+    @Test
     void getAllTopUpTransactions() throws Exception {
         ResultActions response = mockMvc.perform(//
                 get("/staff/top-up-transaction")
@@ -42,6 +43,7 @@ class StaffControllerTest {
                 .andExpect(content().contentType("text/html;charset=UTF-8"));
     }
 
+    @Test
     void acceptTopUpTransaction() throws Exception {
         UUID paymentMethodId = UUID.randomUUID();
         TopUpTransaction topUpTransaction = new TopUpTransaction();
@@ -65,6 +67,7 @@ class StaffControllerTest {
         topUpTransactionRepository.deleteById(topUpTransaction.getId());
     }
 
+    @Test
     void rejectTopUpTransaction() throws Exception {
         UUID paymentMethodId = UUID.randomUUID();
         TopUpTransaction topUpTransaction = new TopUpTransaction();
