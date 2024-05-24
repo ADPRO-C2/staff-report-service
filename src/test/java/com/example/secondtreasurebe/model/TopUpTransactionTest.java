@@ -14,10 +14,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class TopUpTransactionTest {
     TopUpTransaction topUpTransaction;
     UUID paymentMethodId = UUID.randomUUID();
+    UUID id = UUID.randomUUID();
+
 
     @BeforeEach
     void setUp(){
         this.topUpTransaction = new TopUpTransaction();
+        this.topUpTransaction.setId(id);
         this.topUpTransaction.setUserId(123456789);
         this.topUpTransaction.setAmount(new BigDecimal("123456789123456789.123456789123456789"));
         this.topUpTransaction.setPaymentMethodId(paymentMethodId);
