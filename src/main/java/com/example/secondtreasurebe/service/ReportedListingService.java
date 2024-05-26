@@ -2,10 +2,6 @@ package com.example.secondtreasurebe.service;
 
 import com.example.secondtreasurebe.model.Listing;
 import com.example.secondtreasurebe.repository.ReportedListingRepository;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

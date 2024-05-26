@@ -61,4 +61,13 @@ class ListingTest {
     void testGetRateCondition(){
         assertEquals(0, this.listing.getRateCondition());
     }
+
+    @Test
+    public void testValidateValidValues() {
+        listing = new Listing();
+        listing.setPrice(BigDecimal.valueOf(100));
+        listing.setStock(10);
+        listing.setRateCondition(1);
+        listing.validate();
+    }
 }

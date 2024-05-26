@@ -80,20 +80,38 @@ public class ReportedListingServiceTest {
     }
 
     @Test
-    void testAddReportedListing() {
+    void testAddCorrectReportedListing() {
         ResponseEntity<String> response = reportedListingService.addReportedListing(listing.getListingId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    void testIgnoreReportedListing() {
+    void testAddInvalidReportedListing() {
+        ResponseEntity<String> response = reportedListingService.addReportedListing("000");
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void testIgnoreCorrectReportedListing() {
         ResponseEntity<String> response = reportedListingService.ignoreReportedListing(listing.getListingId());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-//
+
     @Test
-    void testRemoveReportedListing() throws IOException {
+    void testIgnoreInvalidReportedListing() {
+        ResponseEntity<String> response = reportedListingService.ignoreReportedListing("000");
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void testRemoveCorrectReportedListing() throws IOException {
         ResponseEntity<String> response = reportedListingService.removeListing(listing.getListingId());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void testRemoveInvalidReportedListing() throws IOException {
+        ResponseEntity<String> response = reportedListingService.removeListing("000");
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
