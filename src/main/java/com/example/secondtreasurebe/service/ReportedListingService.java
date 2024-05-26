@@ -3,8 +3,8 @@ package com.example.secondtreasurebe.service;
 import com.example.secondtreasurebe.model.Listing;
 import com.example.secondtreasurebe.repository.ReportedListingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +23,8 @@ public class ReportedListingService {
     }
 
     public ResponseEntity<String> addReportedListing(String id) {
-        String uri= String.format("http://34.142.129.98/api/listing/{}", id);
+        String uri = "http://34.142.129.98/api/listing/" + id;
+        System.out.println(uri);
         RestTemplate restTemplate = new RestTemplate();
         Listing listing;
         try {
@@ -51,7 +52,7 @@ public class ReportedListingService {
         reportedListingRepository.deleteById(id);
         return new ResponseEntity<>("The listing has been ignored", HttpStatus.OK);
     }
-//
+
     public ResponseEntity<String> removeListing(String id) throws IOException {
         String uri= String.format("http://34.142.129.98/api/listing/{}", id);
         RestTemplate restTemplate = new RestTemplate();
@@ -65,12 +66,8 @@ public class ReportedListingService {
 
         reportedListingRepository.deleteById(id);
         URL url = new URL(String.format("http://34.142.129.98/api/delete-listing/{}", id));
-        HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
-        httpCon.setDoOutput(true);
-        httpCon.setRequestProperty(
-                "Content-Type", "application/x-www-form-urlencoded" );
-        httpCon.setRequestMethod("POST");
-        httpCon.connect();
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("DELETE");
         return new ResponseEntity<>("The listing has been removed", HttpStatus.OK);
     }
 }
