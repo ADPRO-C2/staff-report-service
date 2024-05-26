@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +22,7 @@ class ListingTest {
         this.listing.setUserId(123456789);
         this.listing.setName("Dimas");
         this.listing.setDescription("sebuah deskripsi");
-        this.listing.setPrice(123456789);
+        this.listing.setPrice(new BigDecimal("123456789"));
         this.listing.setStock(123456789);
         this.listing.setPhotoUrl("https://thisisphotourl.com");
         this.listing.setRateCondition(0);
@@ -46,7 +47,7 @@ class ListingTest {
 
     @Test
     void testGetPrice(){
-        assertEquals(123456789, this.listing.getPrice());
+        assertEquals("123456789", this.listing.getPrice().toString());
     }
     @Test
     void testGetStock(){
