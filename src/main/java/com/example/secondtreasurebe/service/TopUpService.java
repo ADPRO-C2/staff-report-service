@@ -21,13 +21,7 @@ public class TopUpService {
     public ResponseEntity<List<TopUpTransaction>> getAllTopUps() {
         String uri= "http://34.143.169.241/topups/";
         RestTemplate restTemplate = new RestTemplate();
-        List<TopUpTransaction> topups;
-        try {
-            topups = restTemplate.getForObject(uri, List.class);
-        }
-        catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
-        }
+        List<TopUpTransaction> topups = restTemplate.getForObject(uri, List.class);
 
         return new ResponseEntity<>(topups, HttpStatus.OK);
     }

@@ -12,10 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class TopUpTransactionTest {
-    TopUpTransaction topUpTransaction;
+    private TopUpTransaction topUpTransaction;
     UUID paymentMethodId = UUID.randomUUID();
     UUID id = UUID.randomUUID();
-
 
     @BeforeEach
     void setUp(){

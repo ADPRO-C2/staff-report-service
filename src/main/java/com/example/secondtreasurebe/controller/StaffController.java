@@ -73,10 +73,10 @@ public class StaffController {
     public ResponseEntity<String> ignoreReportedListing(@PathVariable("id") String id) {
         return reportedListingService.ignoreReportedListing(id);
     }
-//
-//    @DeleteMapping("reported-listing/remove/{id}")
-//    @ResponseBody
-//    public ResponseEntity<String> removeListing(@PathVariable("id") String id) throws IOException {
-//        return reportedListingService.removeListing(id);
-//    }
+
+    @DeleteMapping("reported-listing/remove/{id}")
+    @ResponseBody
+    public ResponseEntity<String> removeListing(@PathVariable("id") String id) throws IOException {
+        return reportedListingService.removeListing(id);
+    }
 }
