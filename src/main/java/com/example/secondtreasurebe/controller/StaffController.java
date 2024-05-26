@@ -1,11 +1,14 @@
 package com.example.secondtreasurebe.controller;
 
+import com.example.secondtreasurebe.model.TopUpTransaction;
 import com.example.secondtreasurebe.service.ReportedListingService;
 import com.example.secondtreasurebe.service.TopUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("staff/")
@@ -33,7 +36,7 @@ public class StaffController {
 
     @GetMapping("top-up-transaction")
     @ResponseBody
-    public ResponseEntity<Object> getAllTopUps() {
+    public ResponseEntity<List<TopUpTransaction>> getAllTopUps() {
         return topUpService.getAllTopUps();
     }
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -15,7 +16,7 @@ public class TopUpService {
     @Autowired
     private TopUpTransactionRepository topUpTransactionRepository;
 
-    public ResponseEntity<Object> getAllTopUps() {
+    public ResponseEntity<List<TopUpTransaction>> getAllTopUps() {
         return new ResponseEntity<>(topUpTransactionRepository.findAll(), HttpStatus.OK);
     }
 
