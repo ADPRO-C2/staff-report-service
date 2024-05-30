@@ -40,7 +40,6 @@ dependencies {
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-security")
     runtimeOnly("org.postgresql:postgresql")
     implementation("jakarta.validation:jakarta.validation-api:3.0.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

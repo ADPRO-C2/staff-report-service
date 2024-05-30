@@ -15,6 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("staff/")
+@CrossOrigin(origins = "https://frontend-adpro-c2.vercel.app/")
 public class StaffController {
     @Autowired
     private TopUpService topUpService;
