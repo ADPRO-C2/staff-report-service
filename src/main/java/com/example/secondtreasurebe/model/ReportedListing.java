@@ -12,14 +12,17 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
-@Table(name="listing")
+@Table(name="reported_listing")
 @Entity
-public class Listing {
+public class ReportedListing {
     @Id
-    @Column(name = "listingid", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
+    private String id;
+
+    @jakarta.validation.constraints.NotNull
+    @Column(name="listingId", nullable=false)
     private String listingId;
 
     @jakarta.validation.constraints.NotNull

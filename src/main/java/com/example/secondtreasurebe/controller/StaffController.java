@@ -1,6 +1,7 @@
 package com.example.secondtreasurebe.controller;
 
 import com.example.secondtreasurebe.model.Listing;
+import com.example.secondtreasurebe.model.ReportedListing;
 import com.example.secondtreasurebe.model.TopUpTransaction;
 import com.example.secondtreasurebe.service.ReportedListingService;
 import com.example.secondtreasurebe.service.TopUpService;
@@ -59,7 +60,7 @@ public class StaffController {
 
     @GetMapping("reported-listing")
     @ResponseBody
-    public ResponseEntity<List<Listing>> getAllReportedListings() {
+    public ResponseEntity<List<ReportedListing>> getAllReportedListings() {
         return reportedListingService.getAllReportedListing();
     }
 

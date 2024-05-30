@@ -1,6 +1,7 @@
 package com.example.secondtreasurebe.service;
 
 import com.example.secondtreasurebe.model.Listing;
+import com.example.secondtreasurebe.model.ReportedListing;
 import com.example.secondtreasurebe.repository.ReportedListingRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,12 +36,13 @@ public class ReportedListingServiceTest {
     @Mock
     RestTemplate restTemplate = new RestTemplate();
 
-    List<Listing> listings = new ArrayList<>();
-    Listing listing = new Listing();
-    Listing listing2 = new Listing();
+    List<ReportedListing> listings = new ArrayList<>();
+    ReportedListing listing = new ReportedListing();
+    ReportedListing listing2 = new ReportedListing();
 
     @BeforeEach
     void setUp() {
+        listing.setId("123456789");
         listing.setListingId("123456789");
         listing.setUserId(123456789);
         listing.setName("Dimas");
@@ -50,6 +52,7 @@ public class ReportedListingServiceTest {
         listing.setPhotoUrl("https://thisisphotourl.com");
         listing.setRateCondition(0);
 
+        listing.setId("123456789");
         listing2.setListingId("222");
         listing2.setUserId(123456789);
         listing2.setName("Dimas");
@@ -71,7 +74,7 @@ public class ReportedListingServiceTest {
     @Test
     void testGetAllListings() {
         Mockito.when(reportedListingRepository.findAll()).thenReturn(listings);
-        ResponseEntity<List<Listing>> response = reportedListingService.getAllReportedListing();
+        ResponseEntity<List<ReportedListing>> response = reportedListingService.getAllReportedListing();
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(2, response.getBody().size());
