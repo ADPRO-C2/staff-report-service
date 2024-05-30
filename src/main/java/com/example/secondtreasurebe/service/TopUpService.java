@@ -27,7 +27,7 @@ public class TopUpService {
     }
 
     public ResponseEntity<String> approve(String string_id) throws IOException {
-        String uri= String.format("http://34.143.169.241/topups/{}", string_id);
+        String uri= "http://34.143.169.241/topups/" + string_id;
         RestTemplate restTemplate = new RestTemplate();
         TopUpTransaction topUpTransaction;
         try {
@@ -50,7 +50,7 @@ public class TopUpService {
     }
 
     public ResponseEntity<String> reject(String string_id) throws JsonProcessingException {
-        String uri= String.format("http://34.143.169.241/topups/{}", string_id);
+        String uri= "http://34.143.169.241/topups/" + string_id;
         RestTemplate restTemplate = new RestTemplate();
         TopUpTransaction topUpTransaction;
         try {
